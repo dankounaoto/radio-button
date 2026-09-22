@@ -1,46 +1,43 @@
 <!doctype html><html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0c10"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.svg">
-<title>RADIO BUTTON</title><style>
+<meta name="theme-color" content="#0b0c10"><link rel="manifest" href="manifest.webmanifest"><title>RADIO BUTTON</title>
+<style>
 *{box-sizing:border-box}body{margin:0;background:#0b0c10;color:#f7f7f8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
-main{max-width:680px;margin:auto;padding:28px 16px 245px}h1{font-size:30px;margin:0}.tagline{font-size:21px;font-weight:800;margin:8px 0 3px}.sub{color:#a7abb4;margin:0 0 25px;line-height:1.55}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.genre{border:1px solid #282b33;border-radius:18px;padding:18px 8px;font-size:15px;font-weight:760;background:#181a20;color:#fff;min-height:72px}
-.note{font-size:12px;color:#858b96;line-height:1.55;margin-top:16px}.player{position:fixed;left:0;right:0;bottom:0;background:#14161cf5;border-top:1px solid #292c34;padding:13px 14px calc(13px + env(safe-area-inset-bottom))}
-.inner{max-width:680px;margin:auto}.eyebrow{font-size:11px;color:#9298a3}.song{font-size:20px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}.artist{font-size:13px;color:#b3b7c0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.station{font-size:11px;color:#7f8590;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.controls{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:8px;margin-top:11px}.controls button{border:0;border-radius:13px;padding:12px 7px;font-size:13px;font-weight:800;background:#252831;color:#fff}.controls .play{background:#f5f5f6;color:#111}
-.status{font-size:11px;color:#8d939e;margin-top:7px}.safe{font-size:11px;color:#9ca2ac;margin-top:9px}
+main{max-width:680px;margin:auto;padding:28px 16px 310px}h1{margin:0;font-size:30px}.tag{font-size:21px;font-weight:850;margin:7px 0}.sub{color:#a6abb4;line-height:1.5;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g{border:1px solid #2a2d35;background:#181a20;color:#fff;border-radius:18px;padding:18px 8px;font-weight:800;font-size:15px;min-height:72px}.g:disabled{opacity:.38}
+.card{margin-top:18px;background:#15171d;border:1px solid #292c34;border-radius:18px;padding:15px}.card h2{font-size:18px;margin:0 0 6px}.muted{color:#a4a9b3;font-size:12px;line-height:1.55}.program{margin-top:10px;padding-top:10px;border-top:1px solid #292c34;font-size:13px;line-height:1.55}
+.official{display:inline-block;margin-top:10px;color:#fff;font-size:13px}.player{position:fixed;left:0;right:0;bottom:0;background:#14161cf7;border-top:1px solid #292c34;padding:12px 14px calc(12px + env(safe-area-inset-bottom))}
+.inner{max-width:680px;margin:auto}.now{font-size:11px;color:#9096a1}.station{font-size:19px;font-weight:850;margin:2px 0}.controls{display:grid;grid-template-columns:1.25fr 1fr;gap:8px;margin:9px 0}.controls button{border:0;border-radius:12px;padding:12px;font-weight:800}.play{background:#fff}.next{background:#272a32;color:#fff}
+.vol{display:flex;align-items:center;gap:9px;font-size:13px}.vol input{width:100%}.status{font-size:11px;color:#9197a2;margin-top:7px}
 </style></head><body><main>
-<h1>📻 RADIO BUTTON</h1><div class="tagline">選ばないから、出会える。</div>
-<p class="sub">気分やジャンルをひとつ押すだけ。<br>まだ知らない一曲を、ラジオから。</p>
+<h1>📻 RADIO BUTTON</h1><div class="tag">選ばないから、出会える。</div><p class="sub">知らない局に飛ばさない。RADIO BUTTONが確認した局から、新しい一曲を。</p>
 <div class="grid">
-<button class="genre" data-k="jpop">🇯🇵<br>J-POP</button><button class="genre" data-k="anime">📺<br>アニソン</button>
-<button class="genre" data-k="90s">💿<br>90年代</button><button class="genre" data-k="rock">🎸<br>ロック</button>
-<button class="genre" data-k="hits">✨<br>新しい曲を発掘</button><button class="genre" data-k="chill">☕<br>作業・Chill</button>
-<button class="genre" data-k="jazz">🎷<br>ジャズ</button><button class="genre" data-k="classical">🎻<br>クラシック</button>
+<button class="g" data-id="j1">🇯🇵<br>J-POP</button>
+<button class="g" disabled>📺<br>アニソン<br><small>選定中</small></button>
+<button class="g" data-id="beach">💿<br>懐かしい曲</button>
+<button class="g" disabled>🎸<br>ロック<br><small>選定中</small></button>
+<button class="g" data-id="beach">🎷<br>ジャズ</button>
+<button class="g" data-id="ottava">🎻<br>クラシック</button>
 </div>
-<p class="note">β版：外部サイトへのリンクは表示しません。HTTPS配信・稼働確認済み・一定品質以上の候補だけを選びます。今後、局は個別確認したホワイトリストへ段階的に移行します。</p>
-</main>
-<section class="player"><div class="inner">
-<div class="eyebrow">NOW PLAYING</div><div id="song" class="song">ジャンルを選んでください</div><div id="artist" class="artist">新しい一曲を探しにいこう。</div>
-<div id="station" class="station">RADIO BUTTON</div>
-<div class="controls"><button id="fav">♡ 発掘メモ</button><button id="play" class="play">▶ 再生</button><button id="next">⏭ 次へ</button></div>
-<div id="msg" class="status"></div><div class="safe">🔒 RADIO BUTTON内で再生します。外部サイトには移動しません。</div>
-<audio id="audio" playsinline></audio></div></section>
+<section id="info" class="card"><h2>局を選んでください</h2><div class="muted">運営元や番組内容を確認できた局だけを掲載します。</div></section>
+</main><section class="player"><div class="inner"><div class="now">NOW PLAYING</div><div id="station" class="station">—</div>
+<div class="controls"><button id="play" class="play">▶ 再生</button><button id="next" class="next">⏭ 次の出会い</button></div>
+<label class="vol">🔈 <input id="volume" type="range" min="0" max="1" step=".05" value=".7"> 🔊</label>
+<div id="msg" class="status">局を選ぶと再生します。</div><audio id="audio" playsinline></audio></div></section>
 <script>
-const API='https://de1.api.radio-browser.info/json';
-const C={
-jpop:{label:'J-POP',tag:'j-pop',country:'Japan'},anime:{label:'アニソン',tag:'anime',language:'japanese'},
-'90s':{label:'90年代',tag:'90s'},rock:{label:'ロック',tag:'rock'},hits:{label:'発掘',tag:'pop'},
-chill:{label:'作業・Chill',tag:'chillout'},jazz:{label:'ジャズ',tag:'jazz'},classical:{label:'クラシック',tag:'classical'}};
-let pool=[],i=0,cur=null;const a=document.getElementById('audio'),$=id=>document.getElementById(id);
-function safeStation(s,k){let u=s.url_resolved||s.url||'';if(!u.startsWith('https://')||s.lastcheckok!==1)return false;if((s.bitrate||0)<64)return false;if(k==='anime'){let hay=((s.tags||'')+' '+(s.language||'')+' '+(s.country||'')).toLowerCase();if(!hay.includes('anime')||!hay.includes('japan'))return false}return true}
-async function tune(k){$('song').textContent='局を探しています…';$('artist').textContent='安全条件を確認中';$('msg').textContent='';let c=C[k],q=new URLSearchParams({tag:c.tag,hidebroken:'true',order:'clickcount',reverse:'true',limit:'100'});if(c.country)q.set('country',c.country);if(c.language)q.set('language',c.language);try{let r=await fetch(`${API}/stations/search?${q}`);let x=await r.json();pool=x.filter(s=>safeStation(s,k));if(!pool.length)throw 0;i=0;load()}catch(e){$('song').textContent='候補が見つかりません';$('artist').textContent='怪しい局を無理に流さず停止しました。'}}
-function load(){cur=pool[i%pool.length];$('song').textContent='曲名を取得できない局です';$('artist').textContent='曲名対応は局ごとに順次追加';$('station').textContent=`${cur.name||'名称不明'} ｜ ${cur.country||'地域不明'} ｜ ${cur.codec||''} ${cur.bitrate?cur.bitrate+'kbps':''}`;a.src=cur.url_resolved||cur.url;a.load();a.play().then(()=>{$('play').textContent='⏸ 停止'}).catch(()=>{$('play').textContent='▶ 再生';$('msg').textContent='再生ボタンを押してください。'})}
-document.querySelectorAll('.genre').forEach(b=>b.addEventListener('click',()=>tune(b.dataset.k)));
-$('play').addEventListener('click',()=>{if(!a.src)return;if(a.paused)a.play();else a.pause()});
-a.addEventListener('play',()=>{$('play').textContent='⏸ 停止'});a.addEventListener('pause',()=>{$('play').textContent='▶ 再生'});
-$('next').addEventListener('click',()=>{if(pool.length){i++;load()}});
-$('fav').addEventListener('click',()=>{$('msg').textContent=cur?'発掘メモ機能は曲名取得対応後に保存できるようにします。':'まずジャンルを選んでください。'});
-a.addEventListener('error',()=>{if(pool.length){i++;$('msg').textContent='再生できない局をスキップしました。';setTimeout(load,500)}});
+const stations={
+j1:{name:'J1 Radio',desc:'J-POPを世界へ届けるインターネットラジオ。J-POP中心の音楽番組や、日本の天気・交通情報を交えた番組を編成。',program:'例：J-POP Worldwide / Total Music Hours / Midday Music など。放送時間は公式番組表で確認できます。',site:'https://www.j1fm.tokyo/',search:'j1 radio'},
+beach:{name:'湘南ビーチFM',desc:'逗子・葉山を拠点とするFM局。ジャズ、オールディーズ、シティポップなど音楽中心の時間帯と地域情報番組を放送。',program:'例：AFTERNOON JAZZ、湘南メモリーレーン、MIDNIGHT JAZZなど。曜日・時間帯で内容が変わります。',site:'https://www.beachfm.co.jp/',search:'shonan beach fm'},
+ottava:{name:'OTTAVA',desc:'2007年開局のクラシック音楽専門インターネットラジオ。24時間配信し、昼間はプレゼンターによるライブ番組も編成。',program:'クラシックを楽章単位・抜粋でも紹介。リクエスト番組やプレゼンター番組があります。',site:'https://ottava.jp/',search:'ottava'}
+};
+const API='https://de1.api.radio-browser.info/json';let selected=null,pool=[],idx=0;const a=document.getElementById('audio'),$=x=>document.getElementById(x);
+function show(s){$('info').innerHTML=`<h2>${s.name}</h2><div class="muted">${s.desc}</div><div class="program"><b>📅 番組・放送内容</b><br>${s.program}</div><a class="official" href="${s.site}" target="_blank" rel="noopener noreferrer">🔗 確認済み公式サイト ↗</a>`}
+async function choose(id){selected=stations[id];show(selected);$('station').textContent=selected.name;$('msg').textContent='確認済み局の配信先を取得中…';try{let q=new URLSearchParams({name:selected.search,hidebroken:'true',order:'clickcount',reverse:'true',limit:'15'});let r=await fetch(`${API}/stations/search?${q}`),x=await r.json();pool=x.filter(s=>(s.url_resolved||s.url||'').startsWith('https://')&&s.lastcheckok===1);if(!pool.length)throw 0;idx=0;load()}catch(e){$('msg').textContent='現在この局の配信先を確認できません。無理に別局は流しません。'}}
+function load(){let s=pool[idx%pool.length];a.src=s.url_resolved||s.url;a.volume=+$('volume').value;a.load();a.play().then(()=>{$('play').textContent='⏸ 停止';$('msg').textContent='RADIO BUTTON内で再生中'}).catch(()=>{$('msg').textContent='▶ 再生を押してください。'})}
+document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.id)));
+$('play').addEventListener('click',()=>{if(!a.src)return;if(a.paused)a.play();else a.pause()});a.addEventListener('play',()=>$('play').textContent='⏸ 停止');a.addEventListener('pause',()=>$('play').textContent='▶ 再生');
+$('volume').addEventListener('input',e=>a.volume=+e.target.value);
+$('next').addEventListener('click',()=>{if(pool.length){idx++;load()}});
+a.addEventListener('error',()=>{$('msg').textContent='この配信は現在再生できません。別の確認済み候補を試します。';if(pool.length){idx++;setTimeout(load,600)}});
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script></body></html>
