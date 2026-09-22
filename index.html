@@ -1,77 +1,38 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RADIO BUTTON｜選ぶだけ音楽ラジオ</title>
+<!doctype html><html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0c10"><link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg"><title>RADIO BUTTON</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b0c10;color:#f7f7f8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
-main{max-width:680px;margin:auto;padding:34px 18px 135px}h1{font-size:34px;margin:0}.sub{color:#aaa;margin:7px 0 28px}
-h2{font-size:17px;color:#ccc}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-button{border:0;border-radius:18px;padding:20px 10px;font-size:16px;font-weight:750;cursor:pointer;background:#1b1d24;color:white}
-button:hover{background:#272a33}.player{position:fixed;left:0;right:0;bottom:0;background:#15171d;border-top:1px solid #2b2e36;padding:12px 18px}
-.inner{max-width:680px;margin:auto}.now{display:flex;align-items:center;justify-content:space-between;gap:10px}.station{min-width:0}
-.station small{display:block;color:#9297a2}.station strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.controls{display:flex;gap:7px}.controls button{padding:9px 11px;border-radius:11px;font-size:13px}
-audio{width:100%;height:32px;margin-top:8px}.status{font-size:12px;color:#9297a2;margin-top:8px;line-height:1.5}
-@media(max-width:480px){h1{font-size:29px}.grid{grid-template-columns:1fr 1fr}button{font-size:14px}}
-</style></head>
-<body><main>
+main{max-width:680px;margin:auto;padding:28px 16px 235px}h1{font-size:30px;margin:0}.sub{color:#aaa;margin:6px 0 24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}button{border:0;border-radius:18px;padding:19px 8px;font-size:15px;font-weight:750;background:#1b1d24;color:#fff}
+.player{position:fixed;left:0;right:0;bottom:0;background:#15171df5;border-top:1px solid #2b2e36;padding:12px 14px calc(12px + env(safe-area-inset-bottom))}
+.inner{max-width:680px;margin:auto}.info{display:flex;gap:11px;align-items:center}.logo{width:48px;height:48px;border-radius:11px;background:#262932;object-fit:cover}
+.meta{min-width:0;flex:1}.meta strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta small{display:block;color:#a6abb5;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.controls{display:flex;gap:8px;margin-top:9px}.controls button{flex:1;padding:10px;border-radius:11px;font-size:13px}.primary{background:#fff;color:#111}
+audio{width:100%;height:31px;margin-top:8px}.desc{font-size:12px;color:#a6abb5;margin-top:7px;line-height:1.45}.link{color:#fff}.status{font-size:11px;color:#8f95a1;margin-top:5px}
+</style></head><body><main>
 <h1>📻 RADIO BUTTON</h1><p class="sub">プレイリストを探さない。聴きたい局を押すだけ。</p>
-<h2>今なに聴く？</h2>
 <div class="grid">
-<button onclick="tune('jpop')">🇯🇵<br>J-POP</button>
-<button onclick="tune('anime')">📺<br>アニソン</button>
-<button onclick="tune('90s')">💿<br>90年代</button>
-<button onclick="tune('rock')">🎸<br>ロック</button>
-<button onclick="tune('hits')">🔥<br>ヒット曲</button>
-<button onclick="tune('chill')">☕<br>作業・Chill</button>
-<button onclick="tune('jazz')">🎷<br>ジャズ</button>
-<button onclick="tune('classical')">🎻<br>クラシック</button>
-</div>
-<p class="status">公開インターネットラジオ局を検索して直接再生します。局によって停止・地域制限・ブラウザ非対応の場合があります。</p>
-</main>
+<button onclick="tune('jpop')">🇯🇵<br>J-POP</button><button onclick="tune('anime')">📺<br>アニソン</button>
+<button onclick="tune('90s')">💿<br>90年代</button><button onclick="tune('rock')">🎸<br>ロック</button>
+<button onclick="tune('hits')">🔥<br>ヒット曲</button><button onclick="tune('chill')">☕<br>作業・Chill</button>
+<button onclick="tune('jazz')">🎷<br>ジャズ</button><button onclick="tune('classical')">🎻<br>クラシック</button>
+</div></main>
 <div class="player"><div class="inner">
-<div class="now"><div class="station"><small id="genre">局を選んでください</small><strong id="name">—</strong></div>
-<div class="controls"><button onclick="nextStation()">⏭ 次の局</button></div></div>
+<div class="info"><img id="logo" class="logo" src="icon.svg"><div class="meta"><strong id="name">局を選んでください</strong><small id="details">—</small></div></div>
+<div id="desc" class="desc">ジャンルを押すと公開インターネットラジオ局を探して再生します。</div>
+<div class="controls"><button class="primary" onclick="nextStation()">⏭ 次の局</button><button id="siteBtn" onclick="openSite()" disabled>🌐 公式サイト</button></div>
 <audio id="audio" controls playsinline></audio><div id="msg" class="status"></div>
 </div></div>
 <script>
 const servers=['https://de1.api.radio-browser.info/json','https://nl1.api.radio-browser.info/json','https://at1.api.radio-browser.info/json'];
-const cfg={
- jpop:{label:'J-POP',tags:['j-pop','jpop','japanese pop'],country:'Japan'},
- anime:{label:'アニソン',tags:['anime','anisong','anime music'],country:null},
- '90s':{label:'90年代',tags:['90s','90s music','1990s'],country:null},
- rock:{label:'ロック',tags:['rock'],country:null},
- hits:{label:'ヒット曲',tags:['hits','top 40','pop'],country:null},
- chill:{label:'作業・Chill',tags:['chillout','chill','lofi'],country:null},
- jazz:{label:'ジャズ',tags:['jazz'],country:null},
- classical:{label:'クラシック',tags:['classical'],country:null}
-};
-let pool=[],idx=0,key='',serverIndex=0;
-const el=id=>document.getElementById(id);
-async function getStations(tag,country){
- const base=servers[serverIndex++%servers.length];
- let url=`${base}/stations/search?tag=${encodeURIComponent(tag)}&hidebroken=true&order=clickcount&reverse=true&limit=35`;
- if(country) url+=`&country=${encodeURIComponent(country)}`;
- const r=await fetch(url); if(!r.ok) throw new Error('api');
- return await r.json();
-}
-async function tune(k){
- key=k; pool=[];idx=0;el('genre').textContent=cfg[k].label;el('name').textContent='局を探しています…';el('msg').textContent='';
- try{
-  let all=[];
-  for(const tag of cfg[k].tags){try{all.push(...await getStations(tag,cfg[k].country))}catch(e){}}
-  const seen=new Set();
-  pool=all.filter(s=>s.lastcheckok===1&&(s.url_resolved||s.url)&&!seen.has(s.stationuuid)&&seen.add(s.stationuuid));
-  if(!pool.length)throw new Error('empty');
-  play(0);
- }catch(e){el('name').textContent='局を取得できませんでした';el('msg').textContent='もう一度この局を押してください。'}
-}
-function play(i){
- if(!pool.length)return;idx=i%pool.length;const s=pool[idx];el('name').textContent=s.name||'名称不明';el('msg').textContent='';
- const a=el('audio');a.src=s.url_resolved||s.url;a.load();
- a.play().catch(()=>el('msg').textContent='▶︎を押すか「次の局」を試してください。');
-}
-function nextStation(){if(pool.length)play(idx+1)}
-el('audio').addEventListener('error',()=>{el('msg').textContent='再生できない局だったので次を試します…';setTimeout(()=>nextStation(),700)});
+const cfg={jpop:{label:'J-POP',tags:['j-pop','jpop','japanese pop'],country:'Japan'},anime:{label:'アニソン',tags:['anime','anisong','anime music']},'90s':{label:'90年代',tags:['90s','90s music','1990s']},rock:{label:'ロック',tags:['rock']},hits:{label:'ヒット曲',tags:['hits','top 40','pop']},chill:{label:'作業・Chill',tags:['chillout','chill','lofi']},jazz:{label:'ジャズ',tags:['jazz']},classical:{label:'クラシック',tags:['classical']}};
+let pool=[],idx=0,current=null,si=0;const $=x=>document.getElementById(x);
+async function search(tag,country){const b=servers[si++%servers.length];let u=`${b}/stations/search?tag=${encodeURIComponent(tag)}&hidebroken=true&order=clickcount&reverse=true&limit=30`;if(country)u+=`&country=${encodeURIComponent(country)}`;let r=await fetch(u);if(!r.ok)throw 0;return r.json()}
+async function tune(k){$('name').textContent='局を探しています…';$('details').textContent=cfg[k].label;pool=[];let a=[];for(const t of cfg[k].tags){try{a.push(...await search(t,cfg[k].country))}catch(e){}}let seen=new Set();pool=a.filter(s=>s.lastcheckok===1&&(s.url_resolved||s.url)&&!seen.has(s.stationuuid)&&seen.add(s.stationuuid));if(pool.length)play(0);else $('name').textContent='局を取得できませんでした'}
+function play(i){idx=i%pool.length;current=pool[idx];$('name').textContent=current.name||'名称不明';$('logo').src=current.favicon||'icon.svg';$('logo').onerror=()=>{$('logo').src='icon.svg'};let tags=(current.tags||'').split(',').slice(0,3).join(' / ');$('details').textContent=[current.country,current.language,tags,current.bitrate?current.bitrate+'kbps':''].filter(Boolean).join(' ｜ ');$('desc').textContent=`${current.country||'地域不明'}から配信。登録タグ：${tags||'情報なし'}。Radio Browserに登録された公開局情報を表示しています。`;$('siteBtn').disabled=!current.homepage;let a=$('audio');a.src=current.url_resolved||current.url;a.load();a.play().catch(()=>{$('msg').textContent='▶︎を押すか「次の局」を試してください。'});}
+function nextStation(){if(pool.length)play(idx+1)}function openSite(){if(current?.homepage)window.open(current.homepage,'_blank','noopener')}
+$('audio').addEventListener('error',()=>{if(pool.length){$('msg').textContent='再生できない局なので次を試します…';setTimeout(nextStation,650)}})
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script></body></html>
