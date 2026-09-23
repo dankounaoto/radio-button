@@ -1,43 +1,9 @@
-<!doctype html><html lang="ja"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0c10"><link rel="manifest" href="manifest.webmanifest"><title>RADIO BUTTON</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#0b0c10;color:#f7f7f8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
-main{max-width:680px;margin:auto;padding:28px 16px 310px}h1{margin:0;font-size:30px}.tag{font-size:21px;font-weight:850;margin:7px 0}.sub{color:#a6abb4;line-height:1.5;margin:0 0 22px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g{border:1px solid #2a2d35;background:#181a20;color:#fff;border-radius:18px;padding:18px 8px;font-weight:800;font-size:15px;min-height:72px}.g:disabled{opacity:.38}
-.card{margin-top:18px;background:#15171d;border:1px solid #292c34;border-radius:18px;padding:15px}.card h2{font-size:18px;margin:0 0 6px}.muted{color:#a4a9b3;font-size:12px;line-height:1.55}.program{margin-top:10px;padding-top:10px;border-top:1px solid #292c34;font-size:13px;line-height:1.55}
-.official{display:inline-block;margin-top:10px;color:#fff;font-size:13px}.player{position:fixed;left:0;right:0;bottom:0;background:#14161cf7;border-top:1px solid #292c34;padding:12px 14px calc(12px + env(safe-area-inset-bottom))}
-.inner{max-width:680px;margin:auto}.now{font-size:11px;color:#9096a1}.station{font-size:19px;font-weight:850;margin:2px 0}.controls{display:grid;grid-template-columns:1.25fr 1fr;gap:8px;margin:9px 0}.controls button{border:0;border-radius:12px;padding:12px;font-weight:800}.play{background:#fff}.next{background:#272a32;color:#fff}
-.vol{display:flex;align-items:center;gap:9px;font-size:13px}.vol input{width:100%}.status{font-size:11px;color:#9197a2;margin-top:7px}
-</style></head><body><main>
-<h1>📻 RADIO BUTTON</h1><div class="tag">選ばないから、出会える。</div><p class="sub">知らない局に飛ばさない。RADIO BUTTONが確認した局から、新しい一曲を。</p>
-<div class="grid">
-<button class="g" data-id="j1">🇯🇵<br>J-POP</button>
-<button class="g" disabled>📺<br>アニソン<br><small>選定中</small></button>
-<button class="g" data-id="beach">💿<br>懐かしい曲</button>
-<button class="g" disabled>🎸<br>ロック<br><small>選定中</small></button>
-<button class="g" data-id="beach">🎷<br>ジャズ</button>
-<button class="g" data-id="ottava">🎻<br>クラシック</button>
-</div>
-<section id="info" class="card"><h2>局を選んでください</h2><div class="muted">運営元や番組内容を確認できた局だけを掲載します。</div></section>
-</main><section class="player"><div class="inner"><div class="now">NOW PLAYING</div><div id="station" class="station">—</div>
-<div class="controls"><button id="play" class="play">▶ 再生</button><button id="next" class="next">⏭ 次の出会い</button></div>
-<label class="vol">🔈 <input id="volume" type="range" min="0" max="1" step=".05" value=".7"> 🔊</label>
-<div id="msg" class="status">局を選ぶと再生します。</div><audio id="audio" playsinline></audio></div></section>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>RADIO BUTTON</title><link rel="manifest" href="manifest.webmanifest"><style>
+*{box-sizing:border-box}body{margin:0;background:#0b0c10;color:#f7f7f8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:680px;margin:auto;padding:28px 16px 270px}h1{margin:0}.tag{font-size:21px;font-weight:850;margin:8px 0}.sub,.muted{color:#a7abb4;line-height:1.55}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g{border:1px solid #2a2d35;background:#181a20;color:#fff;border-radius:18px;padding:18px 8px;font-weight:800;min-height:72px}.g:disabled{opacity:.4}.card{margin-top:18px;background:#15171d;border:1px solid #292c34;border-radius:18px;padding:16px}.why{background:#20232b;border-radius:12px;padding:11px;margin:12px 0;font-size:13px;line-height:1.5}.official{color:#fff}.player{position:fixed;left:0;right:0;bottom:0;background:#14161cf8;border-top:1px solid #292c34;padding:12px 14px calc(12px + env(safe-area-inset-bottom))}.inner{max-width:680px;margin:auto}.station{font-size:19px;font-weight:850}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.controls button{border:0;border-radius:13px;padding:12px;font-weight:800}.play{background:#fff}.next{background:#272a32;color:#fff}.note,.status{font-size:11px;color:#9096a1}.volume{display:flex;align-items:center;gap:10px;margin-top:10px}.volume input{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;background:#4a4e58}.volume input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff}
+</style></head><body><main><h1>📻 RADIO BUTTON</h1><div class="tag">選ばないから、出会える。</div><p class="sub">確認できた局から、選んだ理由と一緒に届けます。</p><div class="grid"><button class="g" data-mode="jazz">🎷<br>ジャズ</button><button class="g" data-mode="oldies">💿<br>懐かしい曲</button><button class="g" disabled>🇯🇵<br>J-POP<br><small>再選定中</small></button><button class="g" disabled>📺<br>アニソン<br><small>選定中</small></button><button class="g" disabled>🎸<br>ロック<br><small>選定中</small></button><button class="g" disabled>🎻<br>クラシック<br><small>利用条件確認中</small></button></div><section id="info" class="card"><b>まずジャンルを選んでください</b><p class="muted">「なぜこの局なのか」まで表示します。</p></section></main>
+<section class="player"><div class="inner"><div class="note">NOW PLAYING</div><div id="station" class="station">—</div><div class="controls"><button id="play" class="play">▶ 再生</button><button id="next" class="next">📻 別のラジオ局</button></div><div class="note">同じジャンルの確認済み局から選びます</div><div class="volume">🔈 <input id="vol" type="range" min="0" max="1" step=".02" value=".72" aria-label="音量"> 🔊</div><div id="msg" class="status">局を選ぶと再生します。</div><audio id="audio" playsinline></audio></div></section>
 <script>
-const stations={
-j1:{name:'J1 Radio',desc:'J-POPを世界へ届けるインターネットラジオ。J-POP中心の音楽番組や、日本の天気・交通情報を交えた番組を編成。',program:'例：J-POP Worldwide / Total Music Hours / Midday Music など。放送時間は公式番組表で確認できます。',site:'https://www.j1fm.tokyo/',search:'j1 radio'},
-beach:{name:'湘南ビーチFM',desc:'逗子・葉山を拠点とするFM局。ジャズ、オールディーズ、シティポップなど音楽中心の時間帯と地域情報番組を放送。',program:'例：AFTERNOON JAZZ、湘南メモリーレーン、MIDNIGHT JAZZなど。曜日・時間帯で内容が変わります。',site:'https://www.beachfm.co.jp/',search:'shonan beach fm'},
-ottava:{name:'OTTAVA',desc:'2007年開局のクラシック音楽専門インターネットラジオ。24時間配信し、昼間はプレゼンターによるライブ番組も編成。',program:'クラシックを楽章単位・抜粋でも紹介。リクエスト番組やプレゼンター番組があります。',site:'https://ottava.jp/',search:'ottava'}
-};
-const API='https://de1.api.radio-browser.info/json';let selected=null,pool=[],idx=0;const a=document.getElementById('audio'),$=x=>document.getElementById(x);
-function show(s){$('info').innerHTML=`<h2>${s.name}</h2><div class="muted">${s.desc}</div><div class="program"><b>📅 番組・放送内容</b><br>${s.program}</div><a class="official" href="${s.site}" target="_blank" rel="noopener noreferrer">🔗 確認済み公式サイト ↗</a>`}
-async function choose(id){selected=stations[id];show(selected);$('station').textContent=selected.name;$('msg').textContent='確認済み局の配信先を取得中…';try{let q=new URLSearchParams({name:selected.search,hidebroken:'true',order:'clickcount',reverse:'true',limit:'15'});let r=await fetch(`${API}/stations/search?${q}`),x=await r.json();pool=x.filter(s=>(s.url_resolved||s.url||'').startsWith('https://')&&s.lastcheckok===1);if(!pool.length)throw 0;idx=0;load()}catch(e){$('msg').textContent='現在この局の配信先を確認できません。無理に別局は流しません。'}}
-function load(){let s=pool[idx%pool.length];a.src=s.url_resolved||s.url;a.volume=+$('volume').value;a.load();a.play().then(()=>{$('play').textContent='⏸ 停止';$('msg').textContent='RADIO BUTTON内で再生中'}).catch(()=>{$('msg').textContent='▶ 再生を押してください。'})}
-document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.id)));
-$('play').addEventListener('click',()=>{if(!a.src)return;if(a.paused)a.play();else a.pause()});a.addEventListener('play',()=>$('play').textContent='⏸ 停止');a.addEventListener('pause',()=>$('play').textContent='▶ 再生');
-$('volume').addEventListener('input',e=>a.volume=+e.target.value);
-$('next').addEventListener('click',()=>{if(pool.length){idx++;load()}});
-a.addEventListener('error',()=>{$('msg').textContent='この配信は現在再生できません。別の確認済み候補を試します。';if(pool.length){idx++;setTimeout(load,600)}});
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+const stream='https://shonanbeachfm.out.airtime.pro/shonanbeachfm_c',data={jazz:{reason:'「ジャズ」を選んだため。公式サイトでジャズ番組と公式HTTPSストリームを確認できる局を選びました。',program:'AFTERNOON JAZZ、MIDNIGHT JAZZなど。時間帯で内容は変わります。'},oldies:{reason:'「懐かしい曲」を選んだため。オールディーズ系番組を編成し、公式HTTPSストリームが公開されている局を選びました。',program:'湘南メモリーレーンなど。曜日・時間帯で内容は変わります。'}};let cur=null,a=document.getElementById('audio'),$=x=>document.getElementById(x);
+function choose(m){cur=data[m];$('station').textContent='湘南ビーチFM';$('info').innerHTML='<h2>湘南ビーチFM</h2><div class="why"><b>💡 なぜこの局？</b><br>'+cur.reason+'</div><p class="muted"><b>この局について</b><br>神奈川県逗子・葉山を拠点とするコミュニティFM。音楽番組と地域情報などを24時間放送。<br><br><b>番組・放送内容</b><br>'+cur.program+'</p><a class="official" href="https://www.beachfm.co.jp/" target="_blank" rel="noopener noreferrer">🔗 確認済み公式サイト ↗</a>';a.src=stream;a.volume=+$('vol').value;a.load();a.play().catch(()=>$('msg').textContent='▶ 再生を押してください。')}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>choose(b.dataset.mode));$('play').onclick=()=>{if(!cur)return;a.paused?a.play():a.pause()};a.onplay=()=>$('play').textContent='⏸ 停止';a.onpause=()=>$('play').textContent='▶ 再生';$('vol').oninput=e=>a.volume=+e.target.value;$('next').onclick=()=>$('msg').textContent=cur?'このジャンルは確認済み局がまだ1局です。未確認局には切り替えません。':'まずジャンルを選んでください。';a.onerror=()=>$('msg').textContent='現在再生できません。未確認の代替局には切り替えません。';
 </script></body></html>
